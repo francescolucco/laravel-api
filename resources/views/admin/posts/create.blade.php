@@ -63,13 +63,10 @@
                   @endforeach
                </select>
             </div>
-
             
 
             <div class="my-3 row">
-
                @foreach ($tags as $tag)
-                  
                <div class="col-6 pl-5 form-check">
                   <input 
                      type="checkbox" 
@@ -84,10 +81,14 @@
                     {{$tag->name}}
                   </label>
                 </div>
-
                @endforeach
-
             </div>
+
+            @error('tags')
+            <div id="validationServer05Feedback" class="invalid-feedback">
+               {{$error}}
+            </div>
+            @enderror
             
             
             <button type="submit" class="btn btn-primary">Submit</button>

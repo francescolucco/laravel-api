@@ -67,22 +67,34 @@
                   @endforeach
                </select>
             </div>
+           
 
-
-            <div class="my-3">
-               <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                  <label class="form-check-label" for="flexCheckDefault">
-                    Default checkbox
+            <div class="my-3 row">
+               @foreach ($tagss as $tag)
+               <div class="col-6 pl-5 form-check">
+                  <input 
+                     type="checkbox" 
+                     name="tags[]" 
+                     value="{{$tag->id}}" 
+                     id="tag{{$loop->iteration}}" 
+                     @if (!$errors->any() && $post->tags->contains($tag->id))
+                        checked
+                     @elseif ($errors->any() && in_array($tag->id, old('tags', [])))
+                        checked
+                     @endif
+                     class="form-check-input" >
+                  <label for="tag{{$loop->iteration}}" class="form-check-label">
+                    {{$tag->name}}
                   </label>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                  <label class="form-check-label" for="flexCheckChecked">
-                    Checked checkbox
-                  </label>
-                </div>
+               @endforeach
             </div>
+
+            @error('tags')
+               <div id="validationServer05Feedback" class="invalid-feedback">
+                  {{$error}}
+               </div>
+            @enderror
             
             
             <button type="submit" class="btn btn-primary">Submit</button>

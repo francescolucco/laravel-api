@@ -100,9 +100,10 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
         $categories = Category::all();
+        $tagss = Tag::all();
 
         if($post){
-            return view('admin.posts.edit', compact('post', 'categories'));
+            return view('admin.posts.edit', compact('post', 'categories', 'tagss'));
         }
         abort(404, 'Pagina non trovata');
     }
@@ -130,6 +131,12 @@ class PostsController extends Controller
 
         $post->update($data);
 
+        if (array_key_exists('tags', $data)) {
+            $post->tags()->sync($data['tags']);
+        }else{
+            // $post->tags()->sync([]);
+            $post->tags()->detach();
+        }
 
         return redirect()->route('admin.posts.show', $post);
     }
@@ -152,6 +159,7 @@ class PostsController extends Controller
         return [
             'title'=>'required|min:2|max:50',
             'description'=>'required|min:4',
+            // 'tags'=> 'required'
         ];
     }
 
@@ -164,6 +172,7 @@ class PostsController extends Controller
             'description.required'=>'Il testo è un campo obbligatorio',
             'description.min'=>'La descrizione deve essere lunga  almeno 2 caratteri',
             'description.max'=>'La descrizione può essere lungoa massimo 50 caratteri',
+            // 'tags.required'=>'Selezionare almeno una casella',
         ];
     }
 }
