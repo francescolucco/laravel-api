@@ -63,6 +63,11 @@ class PostsController extends Controller
 
         // verifico l'esistenza dell'array tags
         // se esiste eseguo l'attach
+        // devo vedere se la chiave tags esiste dentro l'array data: per fare questo utilizzo il metodo array_key_exists. In quale chiave? tags In quale array?? $data
+        // ciò risulta così array_key_exists('data', $data)
+        if (array_key_exists('tags', $data)) {
+            $new_post->tags()->attach($data['tags']);
+        }
 
         return redirect()->route('admin.posts.show', $new_post);
   
