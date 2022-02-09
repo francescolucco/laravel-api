@@ -8,7 +8,7 @@
    <title>BOOLPRESS</title>
 </head>
 <body>
-   <h1>HOME</h1>
-   
+   <div id="app"></div>
+   <script src="{{asset('js/guest.js')}}"></script>
 </body>
 </html>
