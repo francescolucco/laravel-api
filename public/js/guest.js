@@ -2034,6 +2034,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Posts",
@@ -2056,6 +2064,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       console.log("page", page);
+      this.posts = null;
       axios.get(this.apiUrl + page).then(function (res) {
         _this.posts = res.data.data;
         _this.pagination = {
@@ -3430,70 +3439,83 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("main", [
-    _c(
-      "div",
-      { staticClass: "container" },
-      [
-        _c("h1", [_vm._v("HELLAS VERONA")]),
-        _vm._v(" "),
-        _vm._l(_vm.posts, function (post) {
-          return _c("PostItem", { key: post.id, attrs: { post: post } })
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "button" },
-          [
-            _c(
-              "button",
-              {
-                attrs: { disabled: _vm.pagination.current === 1 },
-                on: {
-                  click: function ($event) {
-                    return _vm.getPosts(_vm.pagination.current - 1)
-                  },
-                },
-              },
-              [_vm._v("\n                Back\n            ")]
-            ),
-            _vm._v(" "),
-            _vm._l(_vm.pagination.last, function (i) {
-              return _c(
-                "button",
-                {
-                  key: i,
-                  class: _vm.pagination.current === i ? "active" : "",
-                  attrs: { disabled: _vm.pagination.current === i },
-                  on: {
-                    click: function ($event) {
-                      return _vm.getPosts(i)
+    _c("div", { staticClass: "container" }, [
+      _c("h1", [_vm._v("HELLAS VERONA")]),
+      _vm._v(" "),
+      _vm.posts
+        ? _c(
+            "div",
+            [
+              _vm._l(_vm.posts, function (post) {
+                return _c("PostItem", {
+                  key: "postItame" + post.id,
+                  attrs: { post: post },
+                })
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "button" },
+                [
+                  _c(
+                    "button",
+                    {
+                      attrs: { disabled: _vm.pagination.current === 1 },
+                      on: {
+                        click: function ($event) {
+                          return _vm.getPosts(_vm.pagination.current - 1)
+                        },
+                      },
                     },
-                  },
-                },
-                [_vm._v("\n                " + _vm._s(i) + "\n            ")]
-              )
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                attrs: {
-                  disabled: _vm.pagination.current === _vm.pagination.last,
-                },
-                on: {
-                  click: function ($event) {
-                    return _vm.getPosts(_vm.pagination.current + 1)
-                  },
-                },
-              },
-              [_vm._v("\n                Back\n            ")]
-            ),
-          ],
-          2
-        ),
-      ],
-      2
-    ),
+                    [_vm._v("\n                    Back\n                ")]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.pagination.last, function (i) {
+                    return _c(
+                      "button",
+                      {
+                        key: "button" + i,
+                        class: _vm.pagination.current === i ? "active" : "",
+                        attrs: { disabled: _vm.pagination.current === i },
+                        on: {
+                          click: function ($event) {
+                            return _vm.getPosts(i)
+                          },
+                        },
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(i) +
+                            "\n                "
+                        ),
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      attrs: {
+                        disabled:
+                          _vm.pagination.current === _vm.pagination.last,
+                      },
+                      on: {
+                        click: function ($event) {
+                          return _vm.getPosts(_vm.pagination.current + 1)
+                        },
+                      },
+                    },
+                    [_vm._v("\n                    Back\n                ")]
+                  ),
+                ],
+                2
+              ),
+            ],
+            2
+          )
+        : _c("div", [_c("h3", [_vm._v("loading...")])]),
+    ]),
   ])
 }
 var staticRenderFns = []
@@ -16209,7 +16231,7 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\franc\Documents\Francesco\BOOLEAN\Esercizi\LARAVEL\laravel-many-to-many - Copia\resources\js\guest.js */"./resources/js/guest.js");
+module.exports = __webpack_require__(/*! C:\Users\franc\Documents\Francesco\BOOLEAN\Esercizi\LARAVEL\laravel-api\resources\js\guest.js */"./resources/js/guest.js");
 
 
 /***/ })
