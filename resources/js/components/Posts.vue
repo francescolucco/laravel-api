@@ -1,14 +1,14 @@
 <template>
     <main>
         <div class="container">
-            <h1>I miei post</h1>
+            <h1>HELLAS VERONA</h1>
 
             <PostItem v-for="post in posts" :key="post.id" :post="post" />
 
-            <div class="navigation">
+            <div class="button">
                 <button
-                    :disabled="pagination.current === 1"
                     @click="getPosts(pagination.current - 1)"
+                    :disabled="pagination.current === 1"
                 >
                     Back
                 </button>
@@ -17,10 +17,16 @@
                     :key="i"
                     @click="getPosts(i)"
                     :disabled="pagination.current === i"
+                    :class="pagination.current === i ? 'active' : ''"
                 >
                     {{ i }}
                 </button>
-                <button @click="getPosts(pagination.current + 1)">Next</button>
+                <button
+                    @click="getPosts(pagination.current + 1)"
+                    :disabled="pagination.current === pagination.last"
+                >
+                    Back
+                </button>
             </div>
         </div>
     </main>
@@ -43,12 +49,13 @@ export default {
             pagination: {},
         };
     },
-
     mounted() {
         this.getPosts();
     },
     methods: {
         getPosts(page = 1) {
+            console.log("page", page);
+
             axios.get(this.apiUrl + page).then((res) => {
                 this.posts = res.data.data;
                 this.pagination = {
@@ -62,23 +69,30 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 main {
-    padding: 150px 0;
-    .container {
-        h1 {
-            margin-bottom: 30px;
-        }
-        .navigation {
-            button {
-                padding: 10px;
-                margin: 3px;
-                cursor: pointer;
-                border-radius: 10px;
-                &:hover {
-                    background-color: black;
-                    color: white;
-                }
+    padding: 130px 0 50px 0;
+    background-color: yellow;
+    h1 {
+        text-align: center;
+        font-size: 40px;
+        color: rgba(1, 46, 113, 255);
+    }
+    .button {
+        display: flex;
+        justify-content: space-between;
+        button {
+            padding: 6px;
+            border-radius: 5px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+                sans-serif;
+            background-color: rgba(1, 46, 113, 255);
+            color: yellow;
+            font-weight: bold;
+            &.active {
+                background-color: yellow;
+                color: rgba(1, 46, 113, 255);
             }
         }
     }

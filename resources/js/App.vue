@@ -1,35 +1,37 @@
 <template>
   <div>
 
-     <Header/>
+    <Header/>
 
-     <Posts/>
-     
-     <Footer/>
 
+
+      <Posts/>
+
+
+
+    <Footer/>
+      
   </div>
 </template>
 
 <script>
 
-import Header from './components/partials/Header.vue';
-import Footer from './components/partials/Footer.vue';
-import Posts from './components/Posts.vue';
+import Header from './components/partials/Header.vue'
+import Footer from './components/partials/Footer.vue'
+import Posts from './components/Posts.vue'
 
 export default {
-   name: 'App',
+    name: 'App',
 
-   components: {
+    components:{
       Header,
       Footer,
       Posts
-   },
-
-   
+    }
 
 }
 </script>
 
-<style lang='scss'>
+<style>
 
 </style>
