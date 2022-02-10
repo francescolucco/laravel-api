@@ -1966,22 +1966,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'PostItem',
+  name: "PostItem",
   props: {
     post: Object
   },
   computed: {
     stringShrinkage: function stringShrinkage() {
-      return this.post.description.substring(0, 140) + '...';
+      return this.post.description.substring(0, 140) + "...";
     },
     formatData: function formatData() {
       var d = new Date(this.post.created_at);
       var day = d.getDate();
       var month = d.getMonth();
       var year = d.getFullYear();
-      if (day < 10) day = '0' + day;
-      if (month < 10) month = '0' + month;
+      if (day < 10) day = "0" + day;
+      if (month < 10) month = "0" + month;
       return "".concat(day, "/").concat(month, "/").concat(year);
     }
   },
@@ -2156,7 +2167,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".card[data-v-3d1b2bbe] {\n  margin: 40px 0;\n  padding: 15px;\n  border-radius: 5px;\n  border: 2px solid rgba(0, 46, 113, 0);\n}\n.card[data-v-3d1b2bbe]:hover {\n  color: #012e71;\n  border: 2px solid #012e71;\n  cursor: pointer;\n}\n.card .match-title[data-v-3d1b2bbe] {\n  text-transform: uppercase;\n  font-size: 20px;\n  font-weight: bold;\n  padding-bottom: 5px;\n}\n.card .date[data-v-3d1b2bbe] {\n  font-size: 12px;\n  font-style: italic;\n}\n.card .description[data-v-3d1b2bbe] {\n  padding-top: 10px;\n}", ""]);
+exports.push([module.i, ".card[data-v-3d1b2bbe] {\n  margin: 40px 0;\n  padding: 15px;\n  border-radius: 5px;\n  border: 2px solid rgba(0, 46, 113, 0);\n}\n.card[data-v-3d1b2bbe]:hover {\n  color: #012e71;\n  border: 2px solid #012e71;\n  cursor: pointer;\n}\n.card .match-title[data-v-3d1b2bbe] {\n  text-transform: uppercase;\n  font-size: 20px;\n  font-weight: bold;\n  padding-bottom: 5px;\n}\n.card .date[data-v-3d1b2bbe] {\n  font-size: 12px;\n  font-style: italic;\n}\n.card .description[data-v-3d1b2bbe] {\n  padding-top: 10px;\n}\n.card .category_tags[data-v-3d1b2bbe] {\n  display: flex;\n  padding: 5px 0;\n}\n.card .category_tags .category[data-v-3d1b2bbe] {\n  border: 2px solid #012e71;\n  color: #012e71;\n  padding: 10px 15px;\n  font-size: 11px;\n  margin: 0 6px 0 0;\n  border-radius: 20px;\n}\n.card .category_tags .post_tags[data-v-3d1b2bbe] {\n  display: flex;\n  padding: 5px 0;\n}\n.card .category_tags .post_tags .tags[data-v-3d1b2bbe] {\n  padding: 5px 10px;\n  font-size: 11px;\n  margin: 0 6px 0 0;\n  border-radius: 20px;\n  background-color: #012e71;\n  color: yellow;\n}", ""]);
 
 // exports
 
@@ -3400,19 +3411,46 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
     _c("div", { staticClass: "match-title" }, [
-      _vm._v(
-        "\n    " + _vm._s(_vm.post.id) + ") " + _vm._s(_vm.post.title) + "\n  "
-      ),
+      _vm._v(_vm._s(_vm.post.id) + ") " + _vm._s(_vm.post.title)),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "date" }, [
-      _vm._v("\n    Data del match: " + _vm._s(_vm.formatData) + "\n  "),
+      _vm._v("Data del match: " + _vm._s(_vm.formatData)),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "category_tags" }, [
+      _vm.post.category
+        ? _c("div", { staticClass: "category" }, [
+            _vm._v(
+              "\n            " + _vm._s(_vm.post.category.name) + "\n        "
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.post.tags
+        ? _c(
+            "div",
+            { staticClass: "post_tags" },
+            _vm._l(_vm.post.tags, function (tag, index) {
+              return _c(
+                "div",
+                { key: "post_category" + index, staticClass: "tags" },
+                [
+                  _vm._v(
+                    "\n                " + _vm._s(tag.name) + "\n            "
+                  ),
+                ]
+              )
+            }),
+            0
+          )
+        : _vm._e(),
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "description" }, [
       _c("strong", [_vm._v("Cronaca della partita:")]),
       _c("br"),
-      _vm._v("\n    " + _vm._s(_vm.stringShrinkage) + "\n  "),
+      _vm._v("\n        " + _vm._s(_vm.stringShrinkage) + "\n    "),
     ]),
   ])
 }
